@@ -1,0 +1,104 @@
+﻿<Window x:Class="TextEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextEditor"
+        mc:Ignorable="d"
+        Title="Text Editor" Height="350" Width="525" Icon="./Resources/Text.png" ResizeMode="NoResize" 
+        Visibility="Visible" WindowStartupLocation="CenterScreen"
+        >
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem x:Name="menuNew" Header="_New"
+                          InputGestureText="Ctrl+N" Click="MenuNew_Click">
+                    <MenuItem.Icon>
+                        <Image Source="./Resources/NewFile.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="menuOpen" Header="_Open"
+                          InputGestureText="Ctrl+O" Click="MenuOpen_Click">
+                    <MenuItem.Icon>
+                        <Image Source="./Resources/OpenFile.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="menuSave" Header="_Save"
+                          InputGestureText="Ctrl+S" Click="MenuSave_Click">
+                    <MenuItem.Icon>
+                        <Image Source="./Resources/SaveFile.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="menuExit" Header="Exit"
+                          Click="MenuExit_Click">
+                    <MenuItem.Icon>
+                        <Image Source="./Resources/Exit.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem x:Name="menuCut" Header="Cut"
+                          Command="ApplicationCommands.Cut"
+                          InputGestureText="Ctrl+X"/>
+                <MenuItem x:Name="menuCopy" Header="Copy"
+                          Command="ApplicationCommands.Copy"
+                          InputGestureText="Ctrl+C"/>
+                <MenuItem x:Name="menuPaste" Header="Paste"
+                          Command="ApplicationCommands.Paste"
+                          InputGestureText="Ctrl+V"/>
+                <Separator/>
+                <MenuItem Header="_Font" InputGestureText="Ctrl+F">
+                    <MenuItem x:Name="menuFontTimes" Header="Times New Roman"
+                              IsCheckable="True" StaysOpenOnClick="True" 
+                              Click="MenuFontTimes_Click"/>
+                    <MenuItem x:Name="menuFontCourier" Header="Courier"
+                              IsCheckable="True" StaysOpenOnClick="True" 
+                              Click="MenuFontCourier_Click"/>
+                    <MenuItem x:Name="menuFontArial" Header="Arial"
+                              IsCheckable="True" StaysOpenOnClick="True" 
+                              Click="MenuFontArial_Click"/>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button x:Name="tbNew" ToolTip="New File" Click="MenuNew_Click">
+                    <Image Source="./Resources/NewFile.png"></Image>
+                </Button>
+                <Button x:Name="tbOpen" ToolTip="Open File" Click="MenuOpen_Click">
+                    <Image Source="./Resources/OpenFile.png"></Image>
+                </Button>
+                <Button x:Name="tbSave" ToolTip="Save File" Click="MenuSave_Click">
+                    <Image Source="./Resources/SaveFile.png"></Image>
+                </Button>
+                <Separator/>
+                <Button x:Name="tbCut" Command="ApplicationCommands.Cut">
+                    <Image Source="./Resources/Cut.png"></Image>
+                </Button>
+                <Button x:Name="tbCopy" Command="ApplicationCommands.Copy">
+                    <Image Source="./Resources/Copy.png"></Image>
+                </Button>
+                <Button x:Name="tbPaste" Command="ApplicationCommands.Paste">
+                    <Image Source="./Resources/Paste.png"></Image>
+                </Button>
+                <Separator/>
+                <Label>Font Size:</Label>
+                <ComboBox x:Name="ComboFontSize" 
+                          SelectionChanged="ComboFontSize_SelectionChanged"
+                          DropDownClosed="ComboFontSize_DropDownClosed"
+                          Width="30">
+                    <ComboBoxItem IsSelected="True">10</ComboBoxItem>
+                    <ComboBoxItem>12</ComboBoxItem>
+                    <ComboBoxItem>14</ComboBoxItem>
+                    <ComboBoxItem>16</ComboBoxItem>
+                </ComboBox>
+                <Button x:Name="tbExit" ToolTip="Exit" Click="MenuExit_Click">
+                    <Image Source="./Resources/Exit.png"></Image>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+
+        <RichTextBox  x:Name="txtBoxDoc" AcceptsReturn="True" Height="290" Width="500"/>
+    </DockPanel>
+</Window>
